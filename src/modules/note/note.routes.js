@@ -4,7 +4,7 @@ import {
   getNote,
   updateNote,
   deleteNote,
-  getAllNote,
+  getNoteByUserId,
 } from "./note.controller.js";
 import { verifyToken } from "../../middleware/verifyToken.js";
 
@@ -12,8 +12,8 @@ const noteRoutes = express.Router();
 
 // noteRoutes.use("/note",verifyToken)
 noteRoutes.post("/note", addNote);
-noteRoutes.get("/note", getAllNote);
-noteRoutes.get("/note/:id", getNote);
+// noteRoutes.get("/note", getAllNote);
+noteRoutes.get("/note/:userId", getNoteByUserId);
 
 noteRoutes.put("/note/:id", updateNote);
 

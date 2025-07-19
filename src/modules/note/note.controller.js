@@ -9,12 +9,12 @@ const addNote = catchError(async (req, res) => {
   res.json({ message: "success", note: addedNote[0] });
 });
 
-const getNote = catchError(async (req, res, next) => {
-  let notes = await noteModel.find(req.params.id);
+const getNoteByUserId = catchError(async (req, res, next) => {
+  let notes = await noteModel.find({ createdBy: req.params.userId });
   if (notes) {
     res.json({ message: "success", notes });
   } else {
-    return next(new AppError("no note with this id", 404));
+    return next(new AppError("no note with this user", 404));
   }
 });
 
