@@ -39,6 +39,6 @@ const deleteNote = catchError(async (req, res) => {
     _id: req.params.id,
     createdBy: req.params.userId,
   });
-  res.json({ message: "success", note });
+  res.json({ message: "success" });
 });
 export { addNote, getNote, updateNote, deleteNote, getAllNote };
