@@ -4,13 +4,13 @@ import AppError from "../../utili/appError.js";
 
 const addNote = catchError(async (req, res) => {
   let addedNote = await noteModel.insertMany(req.body);
-  res.json({ message: "success", addedNote });
+  console.log(addedNote);
+
+  res.json({ message: "success", note: addedNote[0] });
 });
 
 const getNote = catchError(async (req, res, next) => {
-  console.log(req.params.id);
-
-  let notes = await noteModel.findById(req.params.id);
+  let notes = await noteModel.find(req.params.id);
   if (notes) {
     res.json({ message: "success", notes });
   } else {
@@ -20,6 +20,8 @@ const getNote = catchError(async (req, res, next) => {
 
 const getAllNote = catchError(async (req, res) => {
   let notes = await noteModel.find();
+  console.log(notes);
+
   res.json({ message: "success", notes });
 });
 
