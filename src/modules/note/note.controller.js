@@ -43,4 +43,4 @@ const deleteNote = catchError(async (req, res) => {
   });
   res.json({ message: "success" });
 });
-export { addNote, getNote, updateNote, deleteNote, getAllNote };
+export { addNote, getNoteByUserId, updateNote, deleteNote, getAllNote };
