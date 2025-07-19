@@ -6,11 +6,15 @@ const addNote = catchError(async (req, res) => {
   res.json({ message: "success", addedNote });
 });
 
-const getNote = catchError(async (req, res) => {
+const getNote = catchError(async (req, res, next) => {
   console.log(req.params.id);
 
   let notes = await noteModel.findById(req.params.id);
-  res.json({ message: "success", notes });
+  if (notes) {
+    res.json({ message: "success", notes });
+  } else {
+    return next(new AppError("no note with this id", 404));
+  }
 });
 
 const getAllNote = catchError(async (req, res) => {
