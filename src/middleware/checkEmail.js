@@ -1,6 +1,6 @@
 import userModel from "../../db/model/user.model.js";
 
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 
 export const checkEmail = async(req,res,next) => {
