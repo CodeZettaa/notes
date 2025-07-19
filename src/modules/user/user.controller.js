@@ -11,6 +11,11 @@ import AppError from "../../utili/appError.js";
 // if email not found .... create user
 
 const signUp = catchError(async (req, res) => {
+  let foundedUser = await userModel.findOne({ email: req.body.email }); //true
+
+  if (foundedUser) {
+    return next(new AppError("user already exist", 409));
+  }
   let addedUser = await userModel.insertMany(req.body);
   addedUser[0].password = undefined;
   // sendOurEmail(req.body.email)
