@@ -1,5 +1,6 @@
 import { noteModel } from "../../../db/model/note.model.js";
 import catchError from "../../middleware/catchError.js";
+import AppError from "../../utili/appError.js";
 
 const addNote = catchError(async (req, res) => {
   let addedNote = await noteModel.insertMany(req.body);
