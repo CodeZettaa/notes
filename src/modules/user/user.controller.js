@@ -10,7 +10,7 @@ import AppError from "../../utili/appError.js";
 // if email founded ....... res.send already register
 // if email not found .... create user
 
-const signUp = catchError(async (req, res) => {
+const signUp = catchError(async (req, res, next) => {
   let foundedUser = await userModel.findOne({ email: req.body.email }); //true
 
   if (foundedUser) {
