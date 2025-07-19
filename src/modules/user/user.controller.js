@@ -19,7 +19,7 @@ const signUp = catchError(async (req, res, next) => {
   let addedUser = await userModel.insertMany(req.body);
   addedUser[0].password = undefined;
   // sendOurEmail(req.body.email)
-  res.status(201).json({ message: "Done" });
+  res.status(201).json({ message: "Done", addedUser });
 });
 
 const signIn = catchError(async (req, res, next) => {
@@ -33,7 +33,7 @@ const signIn = catchError(async (req, res, next) => {
 
   const token = jwt.sign({ email: req.body.email }, "Note");
   if (foundedUser.password == req.body.password) {
-    res.json({ message: "welocme", token });
+    res.json({ message: "welocme", token, id: foundedUser._id });
   } else {
     return next(new AppError("email or password is invalid", 422));
   }
