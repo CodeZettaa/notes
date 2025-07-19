@@ -7,14 +7,12 @@ const addNote = catchError(async (req, res) => {
 });
 
 const getNote = catchError(async (req, res) => {
-  let notes = await noteModel
-    .find({ createdBy: req.params.id })
-    .populate("createdBy");
+  let notes = await noteModel.find({ createdBy: req.params.id });
   res.json({ message: "Hi", notes });
 });
 
 const getAllNote = catchError(async (req, res) => {
-  let notes = await noteModel.populate("createdBy");
+  let notes = await noteModel();
   res.json({ message: "Hi", notes });
 });
 
