@@ -31,7 +31,7 @@ const signIn = catchError(async (req, res, next) => {
   // if(foundedUser.isConfirmed == false)
   //     return res.status(401).json({message:"U should verify ur account"})
 
-  const token = jwt.sign({ email }, "Note");
+  const token = jwt.sign({ email: req.body.email }, "Note");
   if (foundedUser.password == req.body.password) {
     res.json({ message: "welocme", token });
   } else {
