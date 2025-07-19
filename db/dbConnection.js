@@ -1,9 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-
-export const dbConnection = mongoose.connect("mongodb://127.0.0.1:27017/ITINoteApp")
-.then(()=>console.log('DB connected'))
-.catch(()=>console.log('DB error'))
-
-
-
+export const dbConnection = mongoose
+  .connect("mongodb+srv://admin:admin@cluster0.lri9y.mongodb.net/")
+  .then(() => console.log("DB connected"))
+  .catch((error) => console.log("DB error", error));
