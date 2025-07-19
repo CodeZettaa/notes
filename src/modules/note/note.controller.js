@@ -12,7 +12,7 @@ const getNote = catchError(async (req, res) => {
 });
 
 const getAllNote = catchError(async (req, res) => {
-  let notes = await noteModel();
+  let notes = await noteModel.find();
   res.json({ message: "Hi", notes });
 });
 
