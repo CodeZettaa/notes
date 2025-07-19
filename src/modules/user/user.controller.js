@@ -16,24 +16,21 @@ const signUp = catchError(async (req, res) => {
   // sendOurEmail(req.body.email)
   res.status(201).json({ message: "Done" });
 });
+
 const signIn = catchError(async (req, res, next) => {
   let foundedUser = await userModel.findOne({ email: req.body.email }); //true
 
-  if (
-    !foundedUser ||
-    !bcrypt.compareSync(req.body.password, foundedUser.password)
-  )
+  if (!foundedUser)
     return next(new AppError("email or password is invalid", 422));
 
   // if(foundedUser.isConfirmed == false)
   //     return res.status(401).json({message:"U should verify ur account"})
 
-  let token = jwt.sign(
-    { _id: foundedUser._id, role: foundedUser.role },
-    "treka"
-  );
-
-  res.json({ message: "welocme", token });
+  if (foundedUser.password == req.body.password) {
+    res.json({ message: "welocme", token });
+  } else {
+    return next(new AppError("email or password is invalid", 422));
+  }
 });
 
 const verifyAccount = catchError(async (req, res, next) => {
